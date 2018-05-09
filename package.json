@@ -1,0 +1,25 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "feather-icons": "^4.7.0",
+    "feather-icons-react": "^0.2.0",
+    "material-ui": "^0.20.0",
+    "react": "^16.3.0",
+    "react-bootstrap": "^0.32.1",
+    "react-css-grid": "^2.0.0-0",
+    "react-dom": "^16.3.0",
+    "react-dropzone": "^4.2.9",
+    "react-google-login": "^3.2.1",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
