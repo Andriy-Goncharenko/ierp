@@ -16,7 +16,7 @@ class Download extends Component {
             tables: [{
                 label: 'Профиль',
                 categories: ['#', 'Артикул', 'Наименование', 'Длина', 'Кол-во', 'Цвет', 'Примечание'],
-                items: [['AR 3331', 'Optima 45x45', '8000', '12', 'RAL 9080', 'Ахаха'], ['AR 3332', 'Optima 45x45', '8000', '12', 'RAL 9080', 'Ахаха'], ['AR 3333', 'Optima 45x45', '8000', '12', 'RAL 9080', 'Ахаха'], ['AR 3334', 'Optima 45x45', '8000', '12', 'RAL 9080', 'Ахаха'], ['AR 3335', 'Optima 45x45', '8000', '12', 'RAL 9080', 'Ахаха']]
+                items: [['AR 3335', 'Optima 45x45', '8000', '12', 'RAL 9080', 'Ахаха']]
             }, {
                 label: 'Аксессуары',
                 categories: ['#', 'Артикул', 'Наименование', 'Длина', 'Кол-во', 'Цвет', 'Примечание'],
@@ -33,7 +33,7 @@ class Download extends Component {
                 label: 'Расходники',
                 categories: ['#', 'Артикул', 'Наименование', 'Кол-во', 'Примечание'],
                 items: [['AR 3333', 'Optima 45x45', '12', 'Ахаха']]
-            },]
+            }]
         };
 
         this.deleteItem = this.deleteItem.bind(this);
@@ -46,7 +46,6 @@ class Download extends Component {
         this.getData = this.getData.bind(this);
     }
 
-    num = 1;
 
     getData(e, k) {
         return e.target.getAttribute(k);
@@ -121,16 +120,20 @@ class Download extends Component {
     }
 
     renderCategories(arr) {
-        return (arr.map((i, index) => <th key={index} scope="col">{i}</th>));
+        return (arr);
     }
 
-    renderItems(arr, k) {
-
+    renderItems(arr, k, l) {
+        l = l[0];
+        let p = 1;
         return arr.map((i, index) => <tr key={index}>
-            <th scope="col">{this.num++}</th>
+            <th scope="col">{l + p++}</th>
             {i.map((_i, ind) => <th key={ind} scope="col"><input type="text" data-index={index} data-key={k}
                                                                  data-item={ind}
                                                                  onChange={this.changeInput} value={_i}/></th>)}
+            <th><FeatherIcon onClick={this.copyItem}
+                             data-index={index} data-key={k}
+                             icon={"arrow-up"} size={24}/></th>
             <th><FeatherIcon onClick={this.copyItem}
                              data-index={index} data-key={k}
                              icon={"copy"} size={24}/></th>
@@ -140,28 +143,8 @@ class Download extends Component {
         </tr>);
     }
 
-    renderTabels() {
-        return this.state.tables.map((i, index) =>
-            <div className="col-12" key={index}>
-                <h3>{i.label}</h3>
-                <table className="table table-striped">
-                    <thead>
-                    <tr>
-                        {this.renderCategories(i.categories)}
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.renderItems(i.items, index)}
-                    </tbody>
-                </table>
-                <button type="button" className="btn btn-link" onClick={this.addItem} data-key={index}>Добавить</button>
-            </div>)
-    }
-
     styleDropzone = {
-        "padding": "0 39%",
+        "padding": "50px 0",
         "height": "200px",
         "border-width": "1px",
         "border-color": "rgb(102, 102, 102)",
@@ -174,6 +157,27 @@ class Download extends Component {
         this.setState({
             message: {text: 'Заказ отправлен на проверку!', flag: true}
         })
+    }
+
+    renderTabels() {
+        return this.state.tables.map((i, index) =>
+            <div className="col-12" key={index}>
+                <h3>{i.label}</h3>
+                <table className="table table-striped">
+                    <thead>
+                    <tr>
+                        {i.categories.map((i, _i) => <th key={_i} scope="col">{i}</th>)}
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.renderItems(i.items, index, i.label)}
+                    </tbody>
+                </table>
+                <button type="button" className="btn btn-link" onClick={this.addItem} data-key={index}>Добавить</button>
+            </div>)
     }
 
     render() {
@@ -189,10 +193,11 @@ class Download extends Component {
                     </div>
                 </div>
 
-
                 <hr/>
                 <div className={'row'}>
-                    <div className="col-6"><Dropzone onDrop={this.onDrop} style={this.styleDropzone}>
+                    <div className="col-6 text-center"><Dropzone onDrop={this.onDrop} style={this.styleDropzone}>
+                        <FeatherIcon icon={"download"} size={25}/>
+                        <br/>
                         <p>Загрузить чертежи</p>
                     </Dropzone></div>
                     <div className="col-6">
@@ -211,5 +216,5 @@ class Download extends Component {
         );
     }
 }
-;
+
 export default Download;
