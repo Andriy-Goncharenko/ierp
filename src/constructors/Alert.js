@@ -3,7 +3,10 @@ import React, {Component} from 'react';
 class Alert extends Component {
     constructor(props) {
         super(props);
-        this.state = {flag: props.flag};
+        this.state = {flag: props.flag, type: "alert-success"};
+        if (props.type) {
+            this.setState({type: props.type});
+        }
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -14,13 +17,14 @@ class Alert extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         return {
             text: nextProps.text,
-            flag: nextProps.flag
+            flag: nextProps.flag,
+            type: nextProps.type
         };
     }
 
     change() {
         if (this.state.flag) {
-            return "alert alert-success alert-dismissible show";
+            return "alert " + this.state.type + "  alert-dismissible show";
         }
         else {
             return "d-none";

@@ -19,9 +19,10 @@ class Nav extends Component {
                         </li>
                         <li className={'nav-item'}>
                             <Link className={'nav-link'} to="/constructors">Конструктор</Link>
+
                         </li>
                         <li className={'nav-item'}>
-                            <a className={'nav-link'}>Закупки</a>
+                            <Link className={'nav-link'} to="/procurement">Закупки</Link>
                         </li>
                         <li className={'nav-item'}>
                             <a className={'nav-link'}>Бухгалтерия</a>
@@ -38,7 +39,7 @@ class Nav extends Component {
                     </ul>
 
 
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand">
                         <img src={this.props.user.imageUrl} width="40" height="40"
                              className="d-inline-block align-top rounded-circle"
                              alt=""/>

@@ -7,6 +7,11 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Profiles from "./materials/Profiles";
 import Fill from "./materials/Fill";
 import Download from "./constructors/Download";
+import AddProfiles from "./add/Profiles";
+import AddFill from "./add/Fill";
+import EditProfiles from "./edit/Profiles";
+import ViewProfiles from "./view/Profiles";
+import {Procurement, ViewProcurement} from "./components";
 
 class App extends Component {
     constructor(props) {
@@ -14,18 +19,6 @@ class App extends Component {
         this.items = props.items;
         this.state = {user: {}, checkLogin: true};
         this.responseGoogle = this.responseGoogle.bind(this)
-    }
-
-    componentDidMount() {
-        const conn = new WebSocket('ws://localhost:8080');
-        conn.onopen = function (e) {
-            console.log("Connection established!");
-            conn.send('Hello World!');
-        };
-
-        conn.onmessage = function (e) {
-            console.log(e.data);
-        };
     }
 
     responseGoogle(response) {
@@ -47,8 +40,14 @@ class App extends Component {
                         <Route exact path="/" component={ListMake}/>
                         <Route exact path="/materials" component={Profiles}/>
                         <Route exact path="/constructors" component={Constructors}/>
+                        <Route exact path="/procurement" component={Procurement}/>
                         <Route path="/materials/fill" component={Fill}/>
                         <Route path="/constructors/download/:id" component={Download}/>
+                        <Route path="/add/profiles/" component={AddProfiles}/>
+                        <Route path="/add/fill/" component={AddFill}/>
+                        <Route path="/edit/profiles/:id" component={EditProfiles}/>
+                        <Route path="/profiles/:id" component={ViewProfiles}/>
+                        <Route path="/procurement/:id" component={ViewProcurement}/>
                     </div>
                 </Router>
             )
