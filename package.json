@@ -23,7 +23,8 @@
     "reconnecting-websocket": "^4.0.0-rc2",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
-    "ws": "^5.1.1"
+    "ws": "^5.1.1",
+    "nodemon": "^1.18.3"
   },
   "scripts": {
     "start": "node server",
