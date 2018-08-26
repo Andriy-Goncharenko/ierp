@@ -27,14 +27,10 @@
     "nodemon": "^1.18.3"
   },
   "scripts": {
-    "start": "node server",
+    "start": "node ./server/index.js",
     "react": "react-scripts start",
-    "server": "nodemon --inspect server 8080",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.3"
   }
 }
