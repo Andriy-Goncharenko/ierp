@@ -5,7 +5,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const path = require('path');
 
-
+console.log(path.join(__dirname, '..', 'build'));
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('*', function (req, res) {
@@ -52,6 +52,6 @@ io.on('connection', function (socket) {
   })
 });
 
-http.listen(3000, function () {
-  console.log('listening on *:3000');
+http.listen(8080, function () {
+  console.log('listening on *:8080');
 });
