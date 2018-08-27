@@ -27,7 +27,7 @@
     "nodemon": "^1.18.3"
   },
   "scripts": {
-    "start": "node ./server/index.js",
+    "start": "node servers",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
