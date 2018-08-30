@@ -27,7 +27,7 @@
     "nodemon": "^1.18.3"
   },
   "scripts": {
-    "start": "nodemon --inspect server 8080",
+    "start": "node  ./server ",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
