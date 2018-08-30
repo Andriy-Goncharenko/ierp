@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import FeatherIcon from 'feather-icons-react';
+import FeatherIcon        from 'feather-icons-react';
 
-import Alert from './Alert';
+import Alert       from './Alert';
 import UploadFiles from './uploadFiles';
-import moment from 'moment';
-import io from 'socket.io-client';
+import moment      from 'moment';
+import io          from 'socket.io-client';
 import 'moment/locale/ru'
 
 
@@ -46,10 +46,10 @@ class Download extends Component {
                 items: [{values: ['', '', '', '', ''], edit: false, status: ''}],
                 removes: []
             }, {
-                label: 'Расходники',
+                label: 'Другое',
                 key: 'consumables',
-                categories: ['#', 'Артикул', 'Наименование', 'Кол-во', 'Примечание'],
-                items: [{values: ['', '', '', ''], edit: false, status: ''}],
+                categories: ['#', 'Артикул', 'Наименование', 'Толщина', 'Высота', 'Длинна', 'Кол-во', 'Цвет', 'Примечание'],
+                items: [{values: ['', '', '', '', '', '', '', ''], edit: false, status: ''}],
                 removes: []
             }],
             saveFlag: false,
@@ -92,6 +92,7 @@ class Download extends Component {
         let {tables, files, flag} = this.state;
         let {id} = this.props.match.params;
         this.socet.emit('state', {_id: id, tables, files, flag});
+
     }
 
     handleProcurement() {
@@ -243,9 +244,10 @@ class Download extends Component {
                                     onClick={this.handleProcurement}>Отправить
                             </button>
                         </div>
-                        <div className="col-8 text-right">
-                            <p className="lead text-muted">Сохранено в {date}</p>
-                        </div>
+                        {date && (<div className="col-8 text-right">
+                            <p className="lead text-muted">{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                        </div>)}
+
                     </div>
                     <UploadFiles files={files} onFiles={this.onFiles}/>
                     <hr/>

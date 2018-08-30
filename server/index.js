@@ -9,49 +9,55 @@ console.log(path.join(__dirname, '..', 'build'));
 app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 io.on('connection', function (socket) {
-  socket.on('get', data => {
-    Specification.findById({_id: data.id}).then(data => {
-      io.emit('state', data);
-    });
-  });
-  socket.on('state', data => {
-    let {_id, tables, files, flag} = data;
-    if (flag) {
-      let s = new Specification({_id, tables, files});
-      s.save((error, data) => {
-        io.emit('state', data);
-      });
-    } else {
-      Specification.updateOne({_id}, {tables, files, date: Date.now()}).then(data => {
-        if (data.ok) {
-          Specification.findById({_id}).then(data => {
+    socket.on('get', data => {
+        Specification.findById({_id: data.id}).then(data => {
             io.emit('state', data);
-          });
-        }
-      });
-    }
-
-  });
-  socket.on('procurement', _id => {
-    Specification.updateOne({_id}, {saveFlag: true, date: Date.now()}).then(d => {
-      if (d.ok)
-        Specification.find({saveFlag: true}).then(data => {
-          console.log('1', data.length);
-          socket.emit('getProcurement', data);
         });
     });
-  });
-  socket.on('getProcurement', () => {
-    Specification.find({saveFlag: true}).then(data => {
-      socket.emit('getProcurement', data);
+    socket.on('gets', () => {
+        Specification.find({}, (err, data) => {
+
+            io.emit('state', data);
+        })
+    });
+    socket.on('state', data => {
+        let {_id, tables, files, flag} = data;
+        if (flag) {
+            let s = new Specification({_id, tables, files});
+            s.save((error, data) => {
+                io.emit('state', data);
+            });
+        } else {
+            Specification.updateOne({_id}, {tables, files, date: Date.now()}).then(data => {
+                if (data.ok) {
+                    Specification.findById({_id}).then(data => {
+                        io.emit('state', data);
+                    });
+                }
+            });
+        }
+
+    });
+    socket.on('procurement', _id => {
+        Specification.updateOne({_id}, {saveFlag: true, date: Date.now()}).then(d => {
+            if (d.ok)
+                Specification.find({saveFlag: true}).then(data => {
+                    console.log('1', data.length);
+                    socket.emit('getProcurement', data);
+                });
+        });
+    });
+    socket.on('getProcurement', () => {
+        Specification.find({saveFlag: true}).then(data => {
+            socket.emit('getProcurement', data);
+        })
     })
-  })
 });
 
 http.listen(8080, function () {
-  console.log('listening on *:8080');
+    console.log('listening on *:8080');
 });
