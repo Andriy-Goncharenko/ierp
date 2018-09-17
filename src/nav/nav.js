@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {Link}             from "react-router-dom";
 
 class Nav extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class Nav extends Component {
             <nav className={'navbar navbar-expand-lg navbar-light bg-white'}>
                 <div className={'collapse navbar-collapse'} id={"nav"}>
                     <ul className={'navbar-nav mr-auto mt-2 mt-lg-0'}>
-                        <li className={'nav-item'}>
+                        <li className={'nav-item '}>
                             <Link className={'nav-link'} to="/">Главная</Link>
                         </li>
                         <li className={'nav-item dropdown'}>
@@ -31,7 +31,11 @@ class Nav extends Component {
                             <a className={'nav-link'}>Доставка</a>
                         </li>
                         <li className={'nav-item'}>
+
                             <a className={'nav-link'}>Склад</a>
+                        </li>
+                        <li className={'nav-item'}>
+                            <Link className={'nav-link'} to="/directory">Справочник</Link>
                         </li>
                         <li className={'nav-item'}>
                             <input className="form-control" type="text" placeholder="Поиск заказа"/>

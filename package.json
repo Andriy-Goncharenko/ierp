@@ -10,8 +10,11 @@
     "material-ui": "^0.20.0",
     "moment": "^2.22.2",
     "mongodb": "^3.1.1",
+    "mongoose": "^5.2.15",
+    "nodemon": "^1.18.3",
     "react": "^16.3.0",
     "react-bootstrap": "^0.32.1",
+    "react-bootstrap-table": "^4.3.1",
     "react-css-grid": "^2.0.0-0",
     "react-dom": "^16.3.0",
     "react-dropzone": "^4.2.9",
@@ -23,8 +26,7 @@
     "reconnecting-websocket": "^4.0.0-rc2",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
-    "ws": "^5.1.1",
-    "nodemon": "^1.18.3"
+    "ws": "^5.1.1"
   },
   "scripts": {
     "start": "node  ./server ",

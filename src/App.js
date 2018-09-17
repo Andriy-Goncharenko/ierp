@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
-import Nav from './nav/nav';
-import ListMake from './left/ListMake';
-import Constructors from './constructors/constructors';
-import GoogleLogin from 'react-google-login';
+import React, {Component}               from 'react';
+import Nav                              from './nav/nav';
+import ListMake                         from './left/ListMake';
+import Constructors                     from './constructors/constructors';
+import GoogleLogin                      from 'react-google-login';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Profiles from "./materials/Profiles";
-import Fill from "./materials/Fill";
-import Download from "./constructors/Download";
-import AddProfiles from "./add/Profiles";
-import AddFill from "./add/Fill";
-import EditProfiles from "./edit/Profiles";
-import ViewProfiles from "./view/Profiles";
-import {Procurement, ViewProcurement} from "./components";
+import Profiles                         from "./materials/Profiles";
+import Fill                             from "./materials/Fill";
+import Download                         from "./constructors/Download";
+import AddProfiles                      from "./add/Profiles";
+import AddFill                          from "./add/Fill";
+import EditProfiles                     from "./edit/Profiles";
+import ViewProfiles                     from "./view/Profiles";
+import {Directory}                      from "./view";
+import {Procurement, ViewProcurement}   from "./components";
 
 class App extends Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class App extends Component {
                         <Route path="/edit/profiles/:id" component={EditProfiles}/>
                         <Route path="/profiles/:id" component={ViewProfiles}/>
                         <Route path="/procurement/:id" component={ViewProcurement}/>
+                        <Route path="/directory" component={Directory}/>
                     </div>
                 </Router>
             )

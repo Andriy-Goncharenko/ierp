@@ -12,4 +12,11 @@ mongoose.connect('mongodb://localhost/ierp-db');
 
 let Specification = mongoose.model('Specification', specificationSchema);
 
-module.exports = {Specification};
+let directorySchema = new Schema({
+
+});
+mongoose.connect('mongodb://localhost/ierp-db');
+
+let Directory = mongoose.model('Directory', directorySchema);
+
+module.exports = {Specification, Directory};
